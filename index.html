@@ -57,13 +57,30 @@
         .h-node {
             background: white; border: 2px solid #e2e8f0; border-radius: 1.5rem;
             padding: 1.5rem; width: 240px; text-align: center; z-index: 10;
+            position: relative;
         }
         .h-parent { background: var(--inst-slate); color: white; border: none; width: 320px; }
         .h-child { border-color: var(--inst-orange); background: #fffaf9; }
         .h-grandchild { border-style: dashed; background: #f8fafc; width: 190px; }
         
         .line-v { width: 2px; height: 40px; background: #cbd5e1; }
-        .line-h { height: 2px; background: #cbd5e1; position: absolute; top: 0; }
+        
+        /* Role Overlay Tags */
+        .role-tag {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            background: var(--inst-orange);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(243, 89, 42, 0.3);
+        }
+        .role-tag-blue { background: #3b82f6; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3); }
+        .role-tag-slate { background: var(--inst-slate); }
 
         .reveal { 
             opacity: 0; 
@@ -76,6 +93,21 @@
         }
 
         .roi-card { border-top: 8px solid var(--inst-orange); box-shadow: 0 20px 40px -15px rgba(0,0,0,0.05); }
+        .roi-card-alt { border-top-color: #cbd5e1; opacity: 0.8; }
+        
+        /* Badge Simulation */
+        .badge-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: white;
+            border: 4px solid #f1f1f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -91,7 +123,7 @@
         <div class="tab-group flex gap-3">
             <a href="#intro" class="tab-btn active">Context</a>
             <a href="#tenancy" class="tab-btn">B2B Tenancy</a>
-            <a href="#roi" class="tab-btn">ROI Model</a>
+            <a href="#roi" class="tab-btn">ROI Scaling</a>
             <a href="#path" class="tab-btn">Program Path</a>
             <a href="#roles" class="tab-btn">Access Roles</a>
         </div>
@@ -104,7 +136,7 @@
             <span class="px-6 py-2 rounded-full bg-orange-50 text-[#f3592a] text-xs font-black uppercase tracking-[0.4em] mb-10 inline-block">
                 Strategic Realignment
             </span>
-            <h1 class="text-7xl md:text-[9rem] mb-12">
+            <h1 class="text-7xl md:text-[9rem] font-black mb-12">
                 From Illusion <br>to <span class="text-[#f3592a]">Excellence.</span>
             </h1>
             <p class="text-3xl text-gray-400 font-medium max-w-5xl mx-auto italic leading-tight">
@@ -113,16 +145,17 @@
             </p>
         </section>
 
-        <!-- Section: Multi-Tenancy (Expanded Architecture) -->
+        <!-- Section: Multi-Tenancy (Expanded Architecture with Roles) -->
         <section id="tenancy" class="py-40 border-t border-gray-100 reveal">
             <div class="text-center mb-24">
-                <h2 class="text-6xl font-black mb-8">Exclusive Sandboxes.</h2>
-                <p class="text-2xl text-gray-500 font-medium max-w-3xl mx-auto">Providing B2B clients with branded Company Training Portals that foster immediate ownership and reporting data sovereignty.</p>
+                <h2 class="text-6xl font-black mb-8">Role-Based Access.</h2>
+                <p class="text-2xl text-gray-500 font-medium max-w-3xl mx-auto">Visualizing exactly where Adil, B2B Managers, and Learners operate within the hierarchical ecosystem.</p>
             </div>
 
             <div class="h-container">
                 <!-- PARENT -->
                 <div class="h-node h-parent shadow-2xl">
+                    <div class="role-tag role-tag-slate">Global Admin</div>
                     <span class="text-[10px] font-black uppercase text-orange-400 block mb-1">Global Parent Command</span>
                     <h4 class="text-xl font-bold uppercase">Proctor Global Design</h4>
                 </div>
@@ -136,16 +169,19 @@
                     <div class="flex flex-col items-center">
                         <div class="line-v"></div>
                         <div class="h-node h-child shadow-md">
+                            <div class="role-tag">Sub-Account Admin</div>
                             <span class="text-[9px] font-black uppercase text-slate-400 block mb-1">Regional Syndicate</span>
                             <h4 class="text-sm font-bold">Middle East Executive Partners</h4>
                         </div>
                         <div class="line-v"></div>
                         <div class="flex gap-4">
                             <div class="h-node h-grandchild">
+                                <div class="role-tag role-tag-blue">Leader & Learner</div>
                                 <span class="text-[8px] font-black uppercase text-orange-500 block mb-1">B2B Sandbox</span>
                                 <h4 class="text-[11px] font-black">Dubai Urban Planning</h4>
                             </div>
                             <div class="h-node h-grandchild">
+                                <div class="role-tag role-tag-blue">Leader & Learner</div>
                                 <span class="text-[8px] font-black uppercase text-orange-500 block mb-1">B2B Sandbox</span>
                                 <h4 class="text-[11px] font-black">Qatar Sustainable City</h4>
                             </div>
@@ -156,16 +192,19 @@
                     <div class="flex flex-col items-center">
                         <div class="line-v"></div>
                         <div class="h-node h-child shadow-md">
+                            <div class="role-tag">Sub-Account Admin</div>
                             <span class="text-[9px] font-black uppercase text-slate-400 block mb-1">Regional Syndicate</span>
                             <h4 class="text-sm font-bold">Canadian Hybrid Consortium</h4>
                         </div>
                         <div class="line-v"></div>
                         <div class="flex gap-4">
                             <div class="h-node h-grandchild">
+                                <div class="role-tag role-tag-blue">Leader & Learner</div>
                                 <span class="text-[8px] font-black uppercase text-orange-500 block mb-1">B2B Sandbox</span>
                                 <h4 class="text-[11px] font-black">Toronto LEED Builders</h4>
                             </div>
                             <div class="h-node h-grandchild">
+                                <div class="role-tag role-tag-blue">Leader & Learner</div>
                                 <span class="text-[8px] font-black uppercase text-orange-500 block mb-1">B2B Sandbox</span>
                                 <h4 class="text-[11px] font-black">Vancouver Design Lab</h4>
                             </div>
@@ -177,122 +216,168 @@
                     <div>
                         <h5 class="text-3xl font-black text-[#f3592a] mb-6">The B2B Advantage</h5>
                         <p class="text-slate-400 text-xl font-medium leading-relaxed">
-                            Adil can offer organizations full reporting access within their own private environment. This eliminates manual spreadsheet work and allows corporate clients to self-serve their own compliance and ROI data.
+                            Adil controls the content at the **Parent Level**, but the **Leader** at the B2B Sandbox level self-serves their own data. No manual administrative work is required from Proctor for client reporting.
                         </p>
                     </div>
-                    <div class="flex flex-col justify-center gap-6">
-                        <div class="px-8 py-6 border-l-4 border-[#f3592a] bg-white/5">
-                            <span class="block text-sm font-black uppercase text-[#f3592a] mb-2 tracking-widest">Client Benefit</span>
-                            <p class="text-lg font-bold">Branded Portals Foster Sense of Ownership</p>
+                    <div class="space-y-4">
+                        <div class="p-6 border border-white/10 rounded-2xl bg-white/5">
+                            <span class="text-xs font-black uppercase text-[#f3592a] block mb-2">Sandbox Sovereignty</span>
+                            <p class="text-sm">Client 'Leaders' only see their own learners, providing absolute data privacy.</p>
                         </div>
-                        <div class="px-8 py-6 border-l-4 border-[#f3592a] bg-white/5">
-                            <span class="block text-sm font-black uppercase text-[#f3592a] mb-2 tracking-widest">Client Benefit</span>
-                            <p class="text-lg font-bold">Isolated Data for GDPR/Privacy Compliance</p>
+                        <div class="p-6 border border-white/10 rounded-2xl bg-white/5">
+                            <span class="text-xs font-black uppercase text-[#f3592a] block mb-2">Global Governance</span>
+                            <p class="text-sm">Adil can update a course once and 'push' the change to every client environment instantly.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Section: ROI Engine (Based on CAD 350 Pricing) -->
+        <!-- Section: ROI Scaling (Multi-Stage Analysis) -->
         <section id="roi" class="py-40 bg-slate-50 border-y border-gray-100 reveal">
-            <div class="max-w-6xl mx-auto text-center">
-                <h3 class="text-7xl font-black mb-16">The Profit Multiplier.</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Proctor Pilot Cost -->
-                    <div class="bg-white p-12 rounded-[3rem] roi-card">
-                        <span class="text-xs font-black uppercase text-slate-400 block mb-4 tracking-widest">Proctor Investment</span>
-                        <h4 class="text-5xl font-black mb-2">CAD 9,653</h4>
-                        <p class="text-sm font-bold text-slate-400 italic">Total Pilot Year 1</p>
+            <div class="max-w-7xl mx-auto">
+                <h3 class="text-7xl font-black mb-16 text-center">Profit Roadmap.</h3>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                    
+                    <!-- STAGE 1: PILOT -->
+                    <div class="bg-white p-12 rounded-[3rem] roi-card flex flex-col h-full">
+                        <span class="text-[10px] font-black uppercase text-slate-400 block mb-4 tracking-widest">Phase 1: Pilot Launch</span>
+                        <h4 class="text-3xl font-black mb-6">Starter Pilot</h4>
+                        <div class="border-b border-slate-100 pb-6 mb-6">
+                            <span class="text-xs font-bold text-slate-400 block">Total Investment</span>
+                            <span class="text-3xl font-black">CAD 9,653</span>
+                        </div>
+                        <div class="flex-grow space-y-4 mb-8">
+                            <div class="flex justify-between">
+                                <span class="text-sm text-slate-500">Breakeven</span>
+                                <span class="text-sm font-bold text-slate-900">28 Learners</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-sm text-slate-500">Recurrent Cost</span>
+                                <span class="text-sm font-bold text-slate-900">$5,048/yr</span>
+                            </div>
+                        </div>
+                        <p class="text-xs font-bold text-slate-400 italic">Target: July Cohort Launch</p>
                     </div>
-                    <!-- Market Charge -->
-                    <div class="bg-white p-12 rounded-[3rem] roi-card scale-105 relative z-20">
-                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-2 rounded-full text-[10px] font-black uppercase">Website Benchmark</div>
-                        <span class="text-xs font-black uppercase text-[#f3592a] block mb-4 tracking-widest">Level 2 Enrollment</span>
-                        <h4 class="text-5xl font-black mb-2">CAD 350</h4>
-                        <p class="text-sm font-bold text-slate-400">Unit Price per Learner</p>
+
+                    <!-- STAGE 2: SCALE -->
+                    <div class="bg-white p-12 rounded-[3rem] roi-card scale-105 shadow-2xl relative z-20 flex flex-col h-full">
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#f3592a] text-white px-6 py-2 rounded-full text-[10px] font-black uppercase">Most Recommended</div>
+                        <span class="text-[10px] font-black uppercase text-[#f3592a] block mb-4 tracking-widest">Phase 2: Commercial Scale</span>
+                        <h4 class="text-3xl font-black mb-6">Catalog Edition</h4>
+                        <div class="border-b border-slate-100 pb-6 mb-6">
+                            <span class="text-xs font-bold text-slate-400 block">Total Investment</span>
+                            <span class="text-3xl font-black text-[#f3592a]">CAD 25,453</span>
+                        </div>
+                        <div class="flex-grow space-y-4 mb-8">
+                            <div class="flex justify-between">
+                                <span class="text-sm text-slate-500">Breakeven</span>
+                                <span class="text-sm font-bold text-[#f3592a]">73 Learners</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-sm text-slate-500">Automated Revenue</span>
+                                <span class="text-sm font-bold text-[#f3592a]">Self-Registration</span>
+                            </div>
+                        </div>
+                        <p class="text-xs font-bold text-slate-400 italic">Target: B2C & B2B E-commerce</p>
                     </div>
-                    <!-- Breakeven -->
-                    <div class="bg-white p-12 rounded-[3rem] roi-card">
-                        <span class="text-xs font-black uppercase text-green-600 block mb-4 tracking-widest">Profit Efficiency</span>
-                        <h4 class="text-5xl font-black mb-2">28</h4>
-                        <p class="text-sm font-bold text-slate-400 italic">Learners to Break Even on Year 1</p>
+
+                    <!-- STAGE 3: AUTHORITY -->
+                    <div class="bg-white p-12 rounded-[3rem] roi-card flex flex-col h-full">
+                        <span class="text-[10px] font-black uppercase text-slate-400 block mb-4 tracking-widest">Phase 3: Global Authority</span>
+                        <h4 class="text-3xl font-black mb-6">Full Suite Authority</h4>
+                        <div class="border-b border-slate-100 pb-6 mb-6">
+                            <span class="text-xs font-bold text-slate-400 block">Total Investment</span>
+                            <span class="text-3xl font-black">CAD 38,063</span>
+                        </div>
+                        <div class="flex-grow space-y-4 mb-8">
+                            <div class="flex justify-between">
+                                <span class="text-sm text-slate-500">Breakeven</span>
+                                <span class="text-sm font-bold text-slate-900">109 Learners</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-sm text-slate-500">LinkedIn Reach</span>
+                                <span class="text-sm font-bold text-slate-900">Digital Credentials</span>
+                            </div>
+                        </div>
+                        <p class="text-xs font-bold text-slate-400 italic">Target: Multi-Product Dominance</p>
                     </div>
-                </div>
-                <div class="mt-24 p-16 bg-white rounded-[4rem] border-2 border-slate-100 shadow-sm text-left">
-                    <h5 class="text-3xl font-black mb-8">Strategic Revenue Insight</h5>
-                    <p class="text-2xl text-gray-500 font-medium leading-relaxed">
-                        Adil, at the <span class="text-slate-900 font-bold">CAD 350 price point</span>, your margin per learner is approximately 13x the platform unit cost. Selling a single cohort of 28 learners to one B2B partner covers your entire Phase 1 investment. Every learner after that is 90 percent pure margin.
-                    </p>
+
                 </div>
             </div>
         </section>
 
-        <!-- Section: Learning Pathway -->
+        <!-- Section: Learning Pathway & Executive Badges -->
         <section id="path" class="py-40 reveal">
             <div class="text-center mb-24">
-                <h2 class="text-6xl font-black">The Executive <br>Journey.</h2>
-                <p class="text-2xl text-gray-400 font-medium max-w-3xl mx-auto mt-6">Translating complex design into stackable micro-credentials.</p>
+                <h2 class="text-6xl font-black">The Credentials.</h2>
+                <p class="text-2xl text-gray-400 font-medium max-w-3xl mx-auto mt-6">Social proof is the currency of the professional market. Every milestone issues a verified digital badge.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="p-16 bg-slate-900 text-white rounded-[4rem]">
-                    <span class="text-xs font-black uppercase text-[#f3592a] tracking-widest block mb-4">Level 1: Awareness</span>
-                    <h4 class="text-3xl font-black mb-8">Why Projects Fail Even When Plans Look Perfect</h4>
-                    <p class="text-slate-400 text-xl font-medium leading-relaxed mb-10">Challenge conventional project thinking and expose invisible project dimensions.</p>
-                    <div class="flex items-center gap-4">
-                        <span class="px-4 py-2 bg-white/10 rounded-lg text-xs font-black uppercase">1 Hour Live</span>
-                        <span class="px-4 py-2 bg-green-500/20 text-green-400 rounded-lg text-xs font-black uppercase">Reciprocity: Free</span>
+                <!-- LEVEL 1 -->
+                <div class="p-16 bg-slate-900 text-white rounded-[4rem] text-center">
+                    <div class="badge-circle">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#f3592a" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
                     </div>
+                    <span class="text-xs font-black uppercase text-[#f3592a] tracking-widest block mb-4">Level 1 Awareness Badge</span>
+                    <h4 class="text-3xl font-black mb-8">Project Realism Foundations</h4>
+                    <p class="text-slate-400 text-xl font-medium leading-relaxed">Awarded for distinguishing visible vs invisible project dimensions and recognizing complexity early.</p>
                 </div>
-                <div class="p-16 bg-slate-50 border border-slate-100 rounded-[4rem]">
-                    <span class="text-xs font-black uppercase text-slate-400 tracking-widest block mb-4">Level 2: Leadership</span>
-                    <h4 class="text-3xl font-black mb-8">Project Complexity & Managerial Response</h4>
-                    <p class="text-gray-500 text-xl font-medium leading-relaxed mb-10">Shift from Illusion of Control to Adaptive Leadership for high-stakes environments.</p>
-                    <div class="flex items-center gap-4">
-                        <span class="px-4 py-2 bg-slate-900 text-white rounded-lg text-xs font-black uppercase">2 Days / 2 Hours</span>
-                        <span class="px-4 py-2 bg-orange-100 text-[#f3592a] rounded-lg text-xs font-black uppercase">CAD 350.00</span>
+                
+                <!-- LEVEL 2 -->
+                <div class="p-16 bg-slate-50 border border-slate-100 rounded-[4rem] text-center">
+                    <div class="badge-circle" style="border-color: #c5a059;">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#c5a059" stroke-width="2">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/>
+                        </svg>
                     </div>
+                    <span class="text-xs font-black uppercase text-slate-400 tracking-widest block mb-4">Level 2 Leadership Badge</span>
+                    <h4 class="text-3xl font-black mb-8">Adaptive Project Leadership</h4>
+                    <p class="text-gray-500 text-xl font-medium leading-relaxed">Awarded for matching managerial responses to real-world project conditions and judgment-based leadership.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Section: Access Roles -->
+        <!-- Section: Access Roles Breakdown -->
         <section id="roles" class="py-40 reveal">
             <div class="text-center mb-24">
-                <h2 class="text-6xl font-black">B2B Roles <br>& Permissions.</h2>
+                <h2 class="text-6xl font-black">Governance <br>& Permission Flow.</h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- Proctor Global Admin -->
+                <!-- Proctor Admin -->
                 <div class="p-12 bg-slate-50 rounded-[3rem] border border-slate-100">
                     <div class="w-12 h-12 bg-slate-900 text-white flex items-center justify-center rounded-2xl mb-8 font-black">AD</div>
                     <h4 class="text-2xl font-black mb-4">Global Admin</h4>
-                    <span class="text-[10px] font-black uppercase text-slate-400 block mb-6 tracking-widest">Access: Full Platform</span>
+                    <span class="text-[10px] font-black uppercase text-slate-400 block mb-6 tracking-widest">Ownership: Proctor</span>
                     <ul class="text-sm space-y-4 text-slate-500 font-bold uppercase tracking-tighter">
-                        <li>• Manage Global Taxonomy</li>
-                        <li>• Audit Child Accounts</li>
-                        <li>• Unified B2B Billing</li>
+                        <li>• Define Global Taxonomy</li>
+                        <li>• Access All Child Sandbox Data</li>
+                        <li>• Manage Multi-Client Billing</li>
                     </ul>
                 </div>
-                <!-- B2B Leader Role -->
+                <!-- B2B Leader -->
                 <div class="p-12 bg-white rounded-[4rem] border-2 border-[#f3592a] shadow-2xl scale-110 z-20">
                     <div class="w-12 h-12 bg-orange-100 text-[#f3592a] flex items-center justify-center rounded-2xl mb-8 font-black">LE</div>
-                    <h4 class="text-2xl font-black mb-4 text-[#f3592a]">The Leader Role</h4>
-                    <span class="text-[10px] font-black uppercase text-slate-400 block mb-6 tracking-widest">Access: Client-Specific</span>
+                    <h4 class="text-2xl font-black mb-4 text-[#f3592a]">B2B Manager Role</h4>
+                    <span class="text-[10px] font-black uppercase text-slate-400 block mb-6 tracking-widest">Access: Isolated Sandbox</span>
                     <ul class="text-sm space-y-4 text-slate-900 font-bold italic">
-                        <li>• Review Team Skill ROI</li>
-                        <li>• Insights Feed: Trend Alerts</li>
-                        <li>• Download Team Certificates</li>
+                        <li>• Review Company Team ROI</li>
+                        <li>• Automated Insights Alerts</li>
+                        <li>• Direct Download Team Certs</li>
                     </ul>
                 </div>
                 <!-- Learner -->
                 <div class="p-12 bg-slate-50 rounded-[3rem] border border-slate-100">
                     <div class="w-12 h-12 bg-slate-300 text-white flex items-center justify-center rounded-2xl mb-8 font-black">LN</div>
                     <h4 class="text-2xl font-black mb-4">The Learner</h4>
-                    <span class="text-[10px] font-black uppercase text-slate-400 block mb-6 tracking-widest">Access: Content Focus</span>
+                    <span class="text-[10px] font-black uppercase text-slate-400 block mb-6 tracking-widest">Access: Learning Focus</span>
                     <ul class="text-sm space-y-4 text-slate-500 font-bold uppercase tracking-tighter">
-                        <li>• Skills-First Content</li>
+                        <li>• Skills-First Content Only</li>
                         <li>• Sync/Async Path Access</li>
                         <li>• LinkedIn Badge Portable</li>
                     </ul>
